@@ -1,0 +1,1 @@
+elf/crypto_kem_ntruhps4096821-shuffling_m4f_speed.elf: CPPFLAGS+=-DBENCHMARK_SAMPLE_FIXED_TYPE

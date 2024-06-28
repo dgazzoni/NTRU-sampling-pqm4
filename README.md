@@ -1,3 +1,37 @@
+# Cortex-M4 code for the paper "Efficient isochronous fixed-weight sampling with applications to NTRU"
+
+This is part of the source code accompanying the paper "Efficient isochronous fixed-weight sampling with applications to NTRU". It is based on [pqm4](https://github.com/mupq/pqm4), with the following changes:
+
+- Implement reference and optimized versions of the approach proposed in our paper:
+    - Reference version in the folders `mupq/pqclean/crypto_kem/ntruhps[2048509,2048677,4096821]-shuffling`;
+    - Optimized version in the folders `crypto_kem/ntruhps[2048509,2048677,4096821]-shuffling`.
+- Optimize the constant-time sorting routine, as described in our paper and in comments to each file, found in the files `crypto_kem/ntruhps[2048509,2048677,4096821]/crypto_sort.c`. Implementations are identical for all parameter sets. A small change was made to each of the header files as well.
+- Add build scripts (`config.mk`) for each implementation of NTRU, and modify `mupq/crypto_kem/speed.c`, in order to benchmark the `sample_fixed_type` routine relevant to our paper.
+
+For instructions on how to use pqm4, refer to the remainder of this file, containing the original `README.md` from pqm4. Briefly, to reproduce the benchmarks in the paper, run the following in the main `pqm4` folder:
+
+```
+./benchmarks.py -p stm32f4discovery -o speed -u /dev/tty.PL2303-USBtoUART110 -i 10 --nohashing ntruhps{2048509,2048677,4096821}{,-shuffling} ntruhrss701
+```
+
+This assumes the STM32F4DISCOVERY board; replace with your board model (`nucleo-l476rg`, `nucleo-l4r5zi`, etc.) in the `-p` parameter if necessary. Also check and, if necessary, replace the path to your USB-serial converter device in the `-u` parameter.
+
+Afterwards, you can convert the results to CSV and Markdown formats by running the following commands:
+
+```
+./convert_benchmarks.py -csv > benchmarks.csv
+./convert_benchmarks.py -md > benchmarks.md
+```
+
+# License
+
+PQM4 itself is based on the work of many different people, with different licenses. Any modifications that we make to an existing work is released under the same original license as that work. As for our original code, we release it under the [Creative Commons CC0 1.0 Universal (CC0 1.0)
+Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/).
+
+The original pqm4 README follows.
+
+---
+
 # pqm4
 Post-quantum crypto library for the ARM Cortex-M4
 
