@@ -19,8 +19,8 @@ This assumes the STM32F4DISCOVERY board; replace with your board model (`nucleo-
 Afterwards, you can convert the results to CSV and Markdown formats by running the following commands:
 
 ```
-./convert_benchmarks.py -csv > benchmarks.csv
-./convert_benchmarks.py -md > benchmarks.md
+./convert_benchmarks.py csv > benchmarks.csv
+./convert_benchmarks.py md > benchmarks.md
 ```
 
 # License
